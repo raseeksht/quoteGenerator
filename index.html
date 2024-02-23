@@ -7,14 +7,18 @@
     <script src="https://kit.fontawesome.com/c93d7e8858.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" >
 </head>
-<body>
+<body style="overflow-y: hidden;">
     <div class="dark-mode-toggler" onclick="darkModeToggle()"><i class="dark-mode-toggler-icon fa-solid fa-sun"></i></div>
     <div class="container">
         <div class="selector_div">
             <select id="quote_selector">
-                <option>Select any category</option>
+                <option disabled selected>Select any category</option>
                 <option value="science">Science</option>
                 <option value="business">Business</option>
+                <option value="education">Education</option>
+                <option value="inspirational">Inspirational</option>
+                <option value="life">Life</option>
+                <option value="motivational">Motivational</option>
     
             </select>
 
@@ -22,11 +26,18 @@
         
 
         <div id="quote_wrapper">
-            Select Category to begin
+            <div class="quote_center">
+                Select Category to begin
+            </div>
         </div>
 
         <div class="btn-group">
+            <div class="">
+                <span>Adjust Font size</span>
+                <input type="range" value="50" style="width: 80%;" id="fontSize">
+                <span id="fontSizeDisplay">20px</span>
 
+            </div>
             <button onclick="handleBtnClick('prev')">Prev</button>
             <button onclick="handleBtnClick('random')">Random</button>
             <button onclick="handleBtnClick('next')">Next</button>
