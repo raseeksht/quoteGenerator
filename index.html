@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Generator</title>
+    <link rel="stylesheet" href="index.css" >
+</head>
+<body>
+    <div class="container">
+        <select id="quote_selector">
+            <option>Select any category</option>
+            <option value="science">Science</option>
+            <option value="business">Business</option>
+
+        </select>
+
+        <div id="quote_wrapper">
+
+        </div>
+
+        <button onclick="handleBtnClick('prev')">Prev</button>
+        <button onclick="handleBtnClick('random')">Random</button>
+        <button onclick="handleBtnClick('next')">Next</button>
+
+
+
+    </div>
+    <script src="script.js"></script>
+    
+</body>
+</html>
