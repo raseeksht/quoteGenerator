@@ -53,6 +53,17 @@ async function getQuote(category){
     setQuote(0)
 }
 
+function darkModeToggle(){
+    document.body.classList.toggle("dark-mode")    
+    const toggler = document.querySelector(".dark-mode-toggler-icon")
+    if (toggler.classList.contains("fa-sun")){
+        toggler.classList.remove("fa-sun")
+        toggler.classList.add("fa-moon")
+    }else{
+        toggler.classList.remove("fa-moon")
+        toggler.classList.add("fa-sun")
+    }
+}
 
 const selector = document.getElementById("quote_selector")
 
