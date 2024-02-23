@@ -4,8 +4,12 @@ let quotes;
 function setQuote(qid){
     quoteId = qid;
     console.log("current quoteId = ",quoteId);
-    const quoteWrapper = document.getElementById("quote_wrapper")
-    quoteWrapper.innerHTML = quotes[quoteId].content
+    const quoteWrapper = document.querySelector(".quote_center")
+    quoteWrapper.innerHTML = `${quoteId + 1}. ${quotes[quoteId].content} <div class="side">-${quotes[quoteId].author}</div>`
+}
+
+function isDarkMode(){
+    return document.body.classList.contains("dark-mode")
 }
 
 function handleBtnClick(btn){
@@ -16,9 +20,7 @@ function handleBtnClick(btn){
         // if the current quote is first in the list, prev quote will be the last one in the list, and goes on the loop
         prevId = qlen - 1;
         nextId = quoteId + 1;
-        // setQuote(qlen - 1)
     }else{
-        // setQuote(quoteId - 1)
         prevId = quoteId - 1;
         nextId = (quoteId + 1) % qlen;
     }
@@ -46,7 +48,10 @@ async function fetchData(url){
 }
 
 async function getQuote(category){
+    // fetch the quote associated with category and show loader until the data arrives
     const url = "https://api.quotable.io/quotes?tags="+category
+    const loaderSrc = isDarkMode() ?  "darkLoader.gif" : "loader.gif";
+    document.querySelector(".quote_center").innerHTML = `<img src='assets/${loaderSrc}' alt='loader'>`;
     const result = await fetchData(url)
     quotes = result.results
     console.log(quotes)
@@ -56,7 +61,8 @@ async function getQuote(category){
 function darkModeToggle(){
     document.body.classList.toggle("dark-mode")    
     const toggler = document.querySelector(".dark-mode-toggler-icon")
-    if (toggler.classList.contains("fa-sun")){
+    if (isDarkMode()){
+        // just toggled dark-mode ? isDarkMode() returns true : false
         toggler.classList.remove("fa-sun")
         toggler.classList.add("fa-moon")
     }else{
@@ -65,9 +71,17 @@ function darkModeToggle(){
     }
 }
 
+
 const selector = document.getElementById("quote_selector")
 
 selector.addEventListener("change",(e)=>{
-    // console.log(e.target.value)
     getQuote(e.target.value)
+})
+
+const fontSize = document.getElementById("fontSize")
+fontSize.addEventListener("input",(e)=>{
+    const min = 10,max=30;
+    const newFontSize = min + fontSize.value/ 100* (max-min); 
+    document.getElementById("quote_wrapper").style.fontSize = Math.floor(newFontSize)+"px"
+    document.getElementById("fontSizeDisplay").innerHTML = Math.floor(newFontSize)+"px"
 })
