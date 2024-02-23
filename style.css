@@ -15,6 +15,7 @@
     align-items: center;
     flex-direction: column;
     padding: 50px 20px;
+    font-size: 20px;
 }
 
 
@@ -30,6 +31,8 @@
 
 .selector_div{
     width: 80%;
+    display: flex;
+    justify-content: center;
 }
 .selector_div select{
     width: 100%;
@@ -67,4 +70,16 @@ button{
 .dark-mode .dark-mode-toggler{
     color: #fff;
     border-color: #fff;
+}
+
+@media screen and (min-width: 600px) {
+    .selector_div select{
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .selector_div select{
+        width: 30%;
+    }
 }
